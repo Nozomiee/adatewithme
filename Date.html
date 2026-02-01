@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>go out with me?</title>
+    <style>
+        body {
+            background-color: #faf1f3;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 1rem;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        header {
+            font-size: 4rem;
+            color:#d2b7eb;
+            margin: 1rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font: bold;
+            color: #1f2630;
+            margin: 1rem 0;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font: bold;
+            color: #1f2630;
+            margin: 1rem 0;
+        }
+
+        img {
+            max-width: 80vw;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin: 1rem 0;
+        }
+
+        .symbol-btn {
+            background-color: #d2b7eb;
+            color: #6038c7;
+            font-family: cursive;
+            font-size: 2rem;
+            padding: 0.5em 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .symbol-btn:hover {
+            background-color: #ab8ef5;
+            color: #280a41;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
+            .container { max-width: 95vw; }
+            img { max-width: 95vw; }
+            .symbol-btn { font-size: 1.2rem; padding: 0.5em 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>ପ( •̤ᴗ•̤ )੭⁾⁾.:✽</header>
+        <img src="croprat.png" alt="Cute Rat">
+        <h2>Will You Please Go Out With Me?🍨</h2>
+        <h3>‧˚꒰🍨꒱ (˶˃ ᵕ ˂˶)🌷͙֒</h3>
+        <div id="symbol-selection">
+            <button class="symbol-btn" id="X">Yes</button>
+            <button class="symbol-btn" id="O">No</button>
+        </div>
+    </div>
+    <script>
+        let noClickCount = 0;
+        const yesBtn = document.getElementById('X');
+        const noBtn = document.getElementById('O');
+
+        if (yesBtn) {
+            yesBtn.addEventListener('click', function() {
+                alert("Yay! Thankyou So Much! 💖\nYou're So Sweet!! Be ready for the date now!!");
+            });
+        }
+
+        if (noBtn) {
+            noBtn.addEventListener('click', function() {
+                noClickCount++;
+                if (noClickCount <= 5) {
+                    yesBtn.style.fontSize = (2 + noClickCount * 1) + "rem";
+                }
+                if (noClickCount === 5) {
+                    yesBtn.style.position = "fixed";
+                    yesBtn.style.top = "50%";
+                    yesBtn.style.left = "50%";
+                    yesBtn.style.transform = "translate(-50%, -50%) scale(2)";
+                    yesBtn.style.zIndex = "9999";
+                    noBtn.disabled = true;
+                    noBtn.style.opacity = "0.5";
+                }
+                alert("Don't be shy babygirl..ദ്ദ(¬ᴗ ´¬ )");
+            });
+        }
+    </script>
+</body>
+</html>
