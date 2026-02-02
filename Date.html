@@ -6,7 +6,7 @@
     <title>go out with me?</title>
     <style>
         body {
-            background-color: #faf1f3;
+            background-color: #ffc2db;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -53,23 +53,32 @@
         }
 
         .symbol-btn {
+            font-family: crusive;
             background-color: #d2b7eb;
-            color: #6038c7;
-            font-family: cursive;
-            font-size: 2rem;
-            padding: 0.5em 1.5em;
+            color: #7b4d84; 
+            padding: 12px 28px;
             border: none;
             border-radius: 10px;
+            font-size: 2 rem;
             cursor: pointer;
-            margin: 1em;
             transition: all 0.3s ease;
-        }
+            box-shadow: 0 6px 15px          rgba(0,0,0,0.15);
+}
 
         .symbol-btn:hover {
             background-color: #ab8ef5;
             color: #280a41;
             transform: scale(1.1);
         }
+
+#X {
+  transition: all 0.4s ease;
+}
+
+#X:focus {
+  outline: none;
+  box-shadow: 0 0 25px rgba(200,150,255,0.6);
+}
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
@@ -92,35 +101,50 @@
             <button class="symbol-btn" id="O">No</button>
         </div>
     </div>
-    <script>
-        let noClickCount = 0;
-        const yesBtn = document.getElementById('X');
-        const noBtn = document.getElementById('O');
+    
 
-        if (yesBtn) {
-            yesBtn.addEventListener('click', function() {
-                alert("Yay! Thankyou So Much! 💖\nYou're So Sweet!! Be ready for the date now!!");
-            });
+
+<script>
+    let noClickCount = 0;
+
+    const yesBtn = document.getElementById("X");
+    const noBtn = document.getElementById("O");
+
+    const messages = [
+        "Hmm… that ‘No’ looked suspicious.",
+        "Don’t be shy babygirl…",
+        "Really?! :((",
+        "YOU SUREEEEEE??!.",
+        "Okay fine… I’ll make the Yes bigger myself.",
+        "Now you have no choice. 😌💖"
+    ];
+
+    yesBtn.addEventListener("click", function () {
+        alert("Yay! Thank you so much! 💖\nBe ready for the date now!!");
+    });
+
+    noBtn.addEventListener("click", function () {
+        noClickCount++;
+
+        if (noClickCount <= 5) {
+            yesBtn.style.fontSize = (2 + noClickCount) + "rem";
         }
 
-        if (noBtn) {
-            noBtn.addEventListener('click', function() {
-                noClickCount++;
-                if (noClickCount <= 5) {
-                    yesBtn.style.fontSize = (2 + noClickCount * 1) + "rem";
-                }
-                if (noClickCount === 5) {
-                    yesBtn.style.position = "fixed";
-                    yesBtn.style.top = "50%";
-                    yesBtn.style.left = "50%";
-                    yesBtn.style.transform = "translate(-50%, -50%) scale(2)";
-                    yesBtn.style.zIndex = "9999";
-                    noBtn.disabled = true;
-                    noBtn.style.opacity = "0.5";
-                }
-                alert("Don't be shy babygirl..ദ്ദ(¬ᴗ ´¬ )");
-            });
+        if (noClickCount === 5) {
+            yesBtn.style.position = "fixed";
+            yesBtn.style.top = "50%";
+            yesBtn.style.left = "50%";
+            yesBtn.style.transform =
+                "translate(-50%, -50%) scale(2)";
+            yesBtn.style.zIndex = "9999";
+
+            noBtn.disabled = true;
+            noBtn.style.opacity = "0.5";
         }
-    </script>
+
+        alert(messages[Math.min(noClickCount - 1, messages.length - 1)]);
+    });
+</script>
+
 </body>
 </html>
