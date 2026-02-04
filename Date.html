@@ -6,7 +6,7 @@
     <title>go out with me?</title>
     <style>
         body {
-            background-color: #ffc2db;
+            background-color: #110218;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -26,21 +26,21 @@
 
         header {
             font-size: 4rem;
-            color:#d2b7eb;
+            color:#feb0db;
             margin: 1rem 0;
         }
 
         h2 {
             font-size: 2.5rem;
             font: bold;
-            color: #1f2630;
+            color: #f2f6fc;
             margin: 1rem 0;
         }
 
         h3 {
             font-size: 2rem;
             font: bold;
-            color: #1f2630;
+            color: #e6f0ff;
             margin: 1rem 0;
         }
 
@@ -54,20 +54,20 @@
 
         .symbol-btn {
             font-family: cursive;
-            background-color: #d2b7eb;
-            color: #7b4d84; 
+            background-color: #ffc9e7;
+            color: #f10f8b; 
             padding: 12px 28px;
             border: none;
             border-radius: 10px;
             font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 15px          rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px      
 }
 
         .symbol-btn:hover {
-            background-color: #ab8ef5;
-            color: #280a41;
+            background-color: #ffb0dc;
+            color: #b50968;
             transform: scale(1.1);
         }
 
@@ -77,8 +77,48 @@
 
 #X:focus {
   outline: none;
-  box-shadow: 0 0 25px rgba(200,150,255,0.6);
+  box-shadow: 0 0 25px rgb(255, 255, 255);
 }
+
+        .popup {
+            display: none;
+            background-color: #fceef2;
+            border: 2px solid #770928;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgb(255, 255, 255);
+            padding: 30px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup p {
+            color: #b10835;
+            font-size: 1.5rem;
+            margin: 0 0 20px 0;
+            font-weight: bold;
+        }
+
+        .popup-close {
+            background-color: #8d071d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background-color: #b50968;
+            transform: scale(1.05);
+        }
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
@@ -101,6 +141,14 @@
             <button class="symbol-btn" id="O">No</button>
         </div>
     </div>
+
+     </div>
+        <div class="popup" id="popup">
+            <p id="popup-message">AWW THANKYOU SO MUCH!</p>
+            <button class="popup-close" onclick="closePopup()">Close</button>
+        </div>
+        <audio id="yesSound" src="YES.wav"></audio>
+        <audio id="noSound" src="NO.wav"></audio>
     
 
 
@@ -109,21 +157,35 @@
 
     const yesBtn = document.getElementById("X");
     const noBtn = document.getElementById("O");
+    const popup = document.getElementById("popup");
+    const popupMessage = document.getElementById("popup-message");
 
     const messages = [
-        "Hmm… that ‘No’ looked suspicious.",
-        "Don’t be shy babygirl…",
+        "Hmm… that 'No' looked suspicious.",
+        "Don't be shy babygirl…",
         "Really?! :((",
         "YOU SUREEEEEE??!.",
-        "Okay fine… I’ll make the Yes bigger myself.",
-        "Now you have no choice. 😌💖"
+        "Okay fine… I'll make the Yes bigger myself.",
+        "YAEEE!"
     ];
 
+    function showPopup(message) {
+        popupMessage.textContent = message;
+        popup.style.display = "block";
+        popup.style.zIndex = "99999";
+    }
+
+    function closePopup() {
+        popup.style.display = "none";
+    }
+
     yesBtn.addEventListener("click", function () {
-        alert("Yay! Thank you so much! 💖\nBe ready for the date now!!");
+        document.getElementById("yesSound").play();
+        showPopup("AWW THANKYOU SO MUCH! 🎉💕");
     });
 
     noBtn.addEventListener("click", function () {
+        document.getElementById("noSound").play();
         noClickCount++;
 
         if (noClickCount <= 5) {
@@ -142,7 +204,14 @@
             noBtn.style.opacity = "0.5";
         }
 
-        alert(messages[Math.min(noClickCount - 1, messages.length - 1)]);
+        showPopup(messages[Math.min(noClickCount - 1, messages.length - 1)]);
+    });
+
+    // Close popup when clicking outside of it
+    window.addEventListener("click", function (event) {
+        if (event.target === popup) {
+            closePopup();
+        }
     });
 </script>
 
