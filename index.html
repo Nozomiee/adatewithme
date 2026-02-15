@@ -32,14 +32,14 @@
 
         h2 {
             font-size: 2.5rem;
-            font: bold;
+            font-weight: bold;
             color: #f2f6fc;
             margin: 1rem 0;
         }
 
         h3 {
             font-size: 2rem;
-            font: bold;
+            font-weight: bold;
             color: #e6f0ff;
             margin: 1rem 0;
         }
@@ -62,8 +62,8 @@
             font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 15px      
-}
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
 
         .symbol-btn:hover {
             background-color: #ffb0dc;
@@ -71,14 +71,14 @@
             transform: scale(1.1);
         }
 
-#X {
-  transition: all 0.4s ease;
-}
+        #X {
+            transition: all 0.4s ease;
+        }
 
-#X:focus {
-  outline: none;
-  box-shadow: 0 0 25px rgb(255, 255, 255);
-}
+        #X:focus {
+            outline: none;
+            box-shadow: 0 0 25px rgb(255, 255, 255);
+        }
 
         .popup {
             display: none;
@@ -142,14 +142,12 @@
         </div>
     </div>
 
-     </div>
-        <div class="popup" id="popup">
-            <button class="popup-close" onclick="closePopup()">Close</button>
-        </div>
-        <audio id="yesSound" src="YES.wav"></audio>
-        <audio id="noSound" src="NO.wav"></audio>
-    
-
+    <div class="popup" id="popup">
+        <p id="popup-message"></p>
+        <button class="popup-close" onclick="closePopup()">Close</button>
+    </div>
+    <audio id="yesSound" src="YES.wav"></audio>
+    <audio id="noSound" src="NO.wav"></audio>
 
 <script>
     let noClickCount = 0;
@@ -162,7 +160,7 @@
     const messages = [
         "Hmm… that 'No' looked suspicious.",
         "Don't be shy babygirl…",
-        "Really?! :((",
+        "Really?! :((", 
         "YOU SUREEEEEE??!.",
         "Okay fine… I'll make the Yes bigger myself.",
         "YAEEE!"
@@ -180,9 +178,7 @@
 
     yesBtn.addEventListener("click", function () {
         document.getElementById("yesSound").play();
-        showPopup("Aww! I knew you would say yes. 
-                  🤍🫂
-                 Get ready for our date now!😗");
+        showPopup("Aww! I knew you would say yes. 🤍🫂 Get ready for our date now!😗");
     });
 
     noBtn.addEventListener("click", function () {
@@ -218,4 +214,5 @@
 
 </body>
 </html>
+
 
